@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica HTML5 Avanzado - Clase 1</title>
+    <link rel="stylesheet" href="estilos/estilos.css">
+</head>
+
+<body>
+    <div id="capa">
+        <video id="video" src="imagenes/video1.mp4"></video>
+        <div>
+            <button onclick="reproducir()">Play</button>
+            <button onclick="pausar()">Pausar</button>
+            <button onclick="cerrar()">Cerrar</button>
+            <ul>
+                <li onclick="uno()">Video 1</li>
+                <li onclick="dos()">Video 2</li>
+            </ul>
+        </div>
+    </div>
+    <nav>
+        <img src="imagenes/_web-logo-01.jpg" alt="">
+        <a href="#">Sobre mí</a>
+        <a href="#">Mi Tienda</a>
+        <a href="#">Personalizados</a>
+        <a onclick="portfolio()">Portfolio</a>
+    </nav>
+    <main>
+        <header>
+            <div>
+                <h1>Sabías que también <br> hago ilus personalizadas?</h1>
+                <p>Aparte de las láminas y demás cosas geniales podés encontrar en la tienda online elementos personalizados Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum numquam excepturi eaque blanditiis, tempora necessitatibus quibusdam
+                    voluptates id, eveniet, inventore molestiae quod error reprehenderit. Tenetur laudantium aliquid neque reprehenderit deserunt!</p>
+
+                <button>Presupuestos</button>
+            </div>
+
+            <canvas id="canvas" width="500" height="500"></canvas>
+            <img src="imagenes/irma-mask_ochopante (1).jpg" id="imagen" style="display:none;" alt="">
+        </header>
+        <section>
+            <article>
+                <div> <img src="imagenes/_web-envios-01.svg" alt="">
+                    <h2>Hacemos envios a todo el país</h2>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque beatae autem sit sunt facere officiis fugiat delectus!</p>
+            </article>
+
+            <article>
+                <div><img src="imagenes/_web-tarjetas-01.svg" alt="">
+                    <h2>No necesitas tarjeta de crédito</h2>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque beatae autem sit sunt facere officiis fugiat delectus!</p>
+            </article>
+
+            <article>
+                <div>
+                    <img src="imagenes/_web-ojo-01.svg" alt="">
+                    <h2>Prestá atención</h2>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque beatae autem sit sunt facere officiis fugiat delectus!</p>
+            </article>
+        </section>
+        <section id="compra">
+            <h3>Ya visitaste la tienda on-line</h3>
+            <button>Quiero ver!</button>
+        </section>
+
+    </main>
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>
