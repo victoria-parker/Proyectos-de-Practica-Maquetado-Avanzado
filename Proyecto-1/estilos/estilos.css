@@ -119,3 +119,34 @@ article div {
     padding: 10px;
     list-style: none;
 }
+
+#compra {
+    flex-direction: column;
+    justify-content: center;
+    background-color: #808080;
+    color: white;
+    width: 100%;
+    font-family: miFuente;
+}
+
+#compra h3 {
+    font-size: 2em;
+    font-weight: normal;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+#compra button {
+    color: white;
+    border-color: white;
+}
+
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+footer ul {
+    list-style: none;
+}
