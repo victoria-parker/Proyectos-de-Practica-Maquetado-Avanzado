@@ -12,6 +12,18 @@ nav {
   padding-bottom: 10px;
   margin-top: 1em;
 }
+nav img {
+  width: 3%;
+}
+nav a {
+  margin-left: 10px;
+  text-decoration: none;
+  color: #4d4d4d;
+  font-weight: bold;
+}
+nav a:first-of-type {
+  margin-left: 15px;
+}
 section,
 header {
   width: 80%;

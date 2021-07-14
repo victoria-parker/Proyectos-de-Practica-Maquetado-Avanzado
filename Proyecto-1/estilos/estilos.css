@@ -15,21 +15,6 @@ body {
     margin: 0;
 }
 
-nav img {
-    width: 3%;
-}
-
-nav a {
-    margin-left: 10px;
-    text-decoration: none;
-    color: #4D4D4D;
-    font-weight: bold;
-}
-
-nav a:first-of-type {
-    margin-left: 15px;
-}
-
 p {
     color: #808080;
 }
