@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Parte No visible: config/meta/links -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="
+                width=device-width, 
+                initial-scale=1,
+                maximum-scale=3">
+    <title>Maquetado Avanzado</title>
+
+    <!-- Icon -->
+    <link rel="icon" href="assets/icon/css.svg">
+
+    <!-- Styles CSS -->
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+</head>
+
+<body>
+<!-- Parte Visible:content -->
+
+    <!-- Nav -->
+    <nav>
+        <a href="#" class="logo">Css</a>
+        <button class="btn">&equiv;</button>
+        <ul class="menu">
+            <li><a class="icon-home" href="#" title="Inicio"><span>Inicio</span></a></li>
+            <li><a class="icon-about" href="about.html" title="Acerca"><span>Acerca</span></a></li>
+            <li><a class="icon-gallery" href="gallery.html" title="Galeria"><span>Galeria</span></a></li>
+            <li><a class="icon-contact" href="#contact" title="Contacto"><span>Contacto</span></a></li>
+        </ul>
+        <a href="#" class="icon-back opacity"></a>
+    </nav>
+
+    <!-- Header (La trabajamos con less)-->
+    <header id="header">
+        <div class="header">
+            <h1>Maquetado Avanzado</h1>
+            <p>HTML | CSS | JS</p>
+            <div>
+                <span class="active"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <ul class="slide">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <button class="icon-prev opacity"></button>
+        <button class="icon-next opacity"></button>
+    </header>
+
+    <!-- Main -->
+    <main>
+        <section>
+            <header class="header">
+                <h2>Elementos HTML5</h2>
+            </header>
+            <article>
+                <header>
+                    <h3>Etiquetas para Estadísticas</h3>
+                </header>
+                <p>
+                    Existen dos elementos que permiten llevar a cabo el control de tareas según su estado, estos son <strong>&lt;progress></strong> que se utiliza para definir el estadp de una tarea cuando esta aún no fue finalizada, por ejemplo <em>el
+                            avance durante la capacitación</em>; y <strong>&lt;meter></strong> que se implementa cuando necesitamos comparar los valores de una tarea cuando ya fue finalizada, por ejemplo <em>el resultado de un examen</em>
+                </p>
+                <ul class="example">
+                    <li>
+                        <strong>Progress</strong>
+                        <ul>
+                            <li>
+                                <progress></progress>
+                                <br> sin value definido es una barra que va y viene
+                            </li>
+                            <li>
+                                <progress value="20" max="100"></progress>
+                                <br> Por defecto es min=0,max=1, pero eso podemos definirlo en la etiqueta, Ahora se definio value="20"; max="100"
+                            </li>
+                            <li class="progress">
+                                <progress max="100"></progress>
+                                <br><input type="number" min="0" max="100"> value:JS
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Meter</strong>
+                        <ul>
+                            <li><meter value="30" max="100" low="40" high="70" optimum="100"></meter> <em>value</em> &lt; low &lt; high &lt; optimum
+                            </li>
+                            <li><meter value="60" max="100" low="40" high="70" optimum="100"></meter> low &lt; <em>value</em> &lt; high &lt; optimum
+                            </li>
+                            <li><meter value="90" max="100" low="40" high="70" optimum="100"></meter> low &lt; high &lt; <em>value</em> &lt; optimum
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </article>
+        </section>
+        <section>
+			<header class="header">
+				<h2>Preprocesadores</h2>
+			</header>
+			<article>
+				<header>
+					<h3>LESS</h3>
+				</header>
+				<p>
+					Preprocesador que utiliza <strong>javascript</strong> como herramienta de compilacion para crear hojas de estilo. Su principal ventaja es la asincronicidad del lenguaje que permite al usuario llamar a los estilos sin importar el orden de aparicion en las lineas de codigo, para compilarlo debemos utilizar el comando <em>lessc input.less output.css</em>
+				</p>
+				<div class="example">
+					<div class="col-12">col-12</div>
+					<div class="col-6">col-6</div>
+					<div class="col-3">col-3</div>
+					<div class="col-2">col-2</div>
+					<div class="col-1">col-1</div>
+					<div class="col-8">col-8</div>
+					<div class="col-9">col-9</div>
+					<div class="col-7">col-7</div>
+				</div>
+			</article>
+            <article>
+                <header>
+                    <h3>SASS</h3>
+                </header>
+                <p></p>
+                <div class="example">
+                    <div class="bg-primary">primary</div>
+                    <div class="bg-secondary">secondary</div>
+                    <div class="bg-light">light</div>
+                    <div class="bg-dark">dark</div>
+                    <div class="bg-success">success</div>
+                    <div class="bg-warning">warning</div>
+                    <div class="bg-danger">danger</div>
+                    <div class="bg-info">info</div>
+                </div>
+            </article>
+		</section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <form action="" method="POST" id="contact">
+            <h2>Contactanos</h2>
+            <label for="contactName">Ingrese su Nombre Completo</label>
+            <input 
+                    id="contactName" 
+                    name="contactName" 
+                    type="text"
+                    maxlength="50"
+                    pattern="[a-z A-Z]{3,50}"
+                    placeholder="Nombre (*): Victoria Parker"
+                    required/>
+            <div class="valid">
+                Ingrese su nombre solamente con letras y espacios. Evite catacteres que no se encuentren en el inglés. El mismo debera contar con al menos 3 caracteres y un maximo de 50 caracteres.
+            </div>
+            <label for="contactEmail">Ingrese su Correo</label>
+            <input 
+                    id="contactEmail" 
+                    name="contactEmail" 
+                    type="email"
+                    minlength="8"
+                    placeholder="Correo(*):vicpark@maquetado.com"
+                    required/>
+            <div class="valid">
+                Ingrese una dirección de correo valida que respete el siguiente formato "usuario@servidor.com". La misma debe contar con al menos 8 caracteres.
+            </div>
+            <label for="contactPhone">Ingrese su Numero de Telefono</label>
+            <input 
+                    id="contactPhone" 
+                    name="contactPhone" 
+                    type="tel" 
+                    pattern="[\(]\d{2,6}[\)]\d{3,6}[\-]\d{3,6}"
+                    placeholder="Telefono(*): (5411)2345-6789"
+                    required/>
+            <div class="valid">
+                Ingrese su número telefónico como figura en el ejemplo: (5411)2345-6789. Puede insertar un guión cada 3 a 6 dígitos.
+            </div>
+            <label for="contactConsult">Ingrese su consulta</label>
+            <textarea name="contactConsult" 
+                id="contactConsult"  
+                minlength="10" 
+                maxlength="200" 
+                placeholder="Consulta (*): Buenos dias, necesito un presupuesto." 
+                required></textarea><!-- no se deja espacios en el text area porque este no preprocesa, poreso las etiquetas de comienzo y fin van pegadas-->
+            <button class="btn">Enviar</button>
+        </form>
+        <div class="social">
+            <a href="https://facebook.com" class="facebook" target="_blank"></a>
+            <a href="https://instagram.com" class="instagram" target="_blank"></a>
+            <a href="https://twitter.com" class="twitter" target="_blank"></a>
+            <a href="https://github.com/c215714n/EducationIT/tree/mav-l-10" class="github" target="_blank"></a>
+        </div>
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4763.5575264617055!2d-6.265455531352492!3d53.3472164089473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670e8361927b15%3A0x47d5361c712db86f!2sHa&#39;penny%20Bridge!5e0!3m2!1ses!2sie!4v1627480740867!5m2!1ses!2sie" 
+            loading="lazy">
+        </iframe>
+        <button class="btn opacity icon-max"></button>
+        <p class="copy">
+            &copy; Todos los derechos reservados
+            <a href="#">Victoria Parker</a> &amp; Compañia.
+        </p>
+    </footer>
+
+    <!-- scripts JS -->
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>

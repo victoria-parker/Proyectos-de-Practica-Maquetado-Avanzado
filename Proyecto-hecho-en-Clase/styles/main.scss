@@ -1,0 +1,248 @@
+//En sass si importa el orden, si yo llamo a un mixin que no esta arriba me va a tirar error; compila de arriba a abajo.
+//Variables
+    $col:24;
+    $path:'../assets/icon';
+    $icons:'css',
+    'facebook',
+    'github',
+    'instagram',
+    'linkedin',
+    'twitter',
+    'whatsapp',
+    'youtube';
+    $viewport:
+        sm  576px,
+        md  768px,
+        lg  992px,
+        xl  1200px;
+    $attributes:
+        text        color,
+        bg          background-color,
+        border      border-color;
+    $colors:
+        primary   #448,
+        secondary #248,
+        light     #eee,
+        dark      #333,
+        success   #3c6,
+        warning   #ec3,
+        danger    #c33,
+        info      #48e;
+    $areas:lbl,cmd,vld;
+    $form: Name, Email, Phone, Consult;
+//Mixins
+@mixin normalize (
+     $m:0,$p:0,$b:0,
+     $ba:border, /* la a es por attribute */
+     $ma:margin,
+     $pa:padding 
+     ){
+     #{$ma}:$m;
+     #{$ba}:$b;
+     #{$pa}:$p;
+ }
+ @mixin flexbox (
+    $fd:row, /* primero el que más voy a usar */
+    $fj:center,
+    $fa:stretch,
+    $fw:wrap,
+    $f:flex,
+ ){
+     display: $f;
+     flex-direction: $fd;
+     justify-self: $fj;
+     align-items: $fa;
+     flex-wrap: $fw;
+ }
+//Loops
+    //Directamente al escribir se ejecuta el mixin
+        //social media icons
+    @each $ico in $icons {
+        .#{$ico}{
+            background-image: url('#{$path}/#{$ico}.svg');
+        }
+    }
+    /* Grid system */
+    //se empieza a contar a partir de 1, no cero. Cuando anidamos bucles primero se resuelve el de adentro y luego el de afuera.
+    @each $vn,$vw in $viewport {
+        @media screen and (min-width: $vw){
+            @for $i from 1 through $col{
+                .col-#{$vn}-#{$i}{
+                    width: percentage($i/$col)
+                }
+            }
+        }
+    }
+
+    ;
+
+    /* Colors */
+    @each $prop, $attr in $attributes{
+        @each $cn,$cv in $colors {
+            .#{$prop}-#{$cn}{
+                #{$attr}:$cv;
+            }
+        }
+    }
+//Hidden Styles
+
+    %translate{transform: translate(10rem);}/* distancia en x e y */
+    %icon{
+        display: inline-block;
+        width:min(calc(5vw+.5rem),3rem);
+        height:min(calc(5vw+.5rem),3rem);
+        background-size: min(calc(5vw+.5rem),3rem);
+        background-position: center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        //Transition
+        @extend %transition;
+
+        &:hover{
+            transform: scale(1.2)
+                        rotate(360deg)
+                        translate(0,-.5rem);/* tiene eje x e y, asi hago que se levante */
+        }
+    }
+    %front-side{position: fixed;z-index: 2;}
+    %scale{transform: scale(1.1);/* unidades en x, y */}
+    %rotate{transform: rotate(15deg); /* gira en grados sentido horario y anti-horario */}
+    %transition{
+        transition-property:all;
+        transition-duration: .5s;
+        transition-timing-function: ease-out;
+    }
+    //Nesting
+    #footer{
+        @include normalize($p:1rem);
+        position: relative;
+        #contact{
+            @include normalize(.5rem auto,1rem,.25rem,border-radius);
+            @include flexbox(column);
+            @extend .col-sm-20,
+                    .col-md-16,
+                    .col-lg-12,
+                    .text-light,
+                    .bg-primary; /* hace que cuando esta en large valga la mitad, no ocupe toda la pantalla sino la mitad */   
+            @media screen and (min-width:1200px) {
+                display: grid;
+                grid-template-areas: 
+                    'heading        heading'
+                    'lblName        lblPhone'
+                    'cmdName        cmdPhone'
+                    'vldName        vldPhone'
+                    'lblEmail       lblEmail'
+                    'cmdEmail       cmdEmail'
+                    'vldEmail       vldEmail'
+                    'lblConsult     lblConsult'
+                    'cmdConsult     cmdConsult'
+                    '.              btn';
+                gap: 0 .5rem;
+
+                @each $a in $areas {
+                    $selector:'#contact';
+                    @each $field in $form{
+                        @if $a==lbl{
+                            $selector:'label[for=contact#{$field}]';
+                        } @else if $a== cmd{
+                            $selector:'#contact#{$field}';
+                        } @else{
+                            $selector: '#contact#{$field} + .valid'
+                        }
+                    #{$selector}{grid-area: $a+$field;}
+                    }
+                }
+            .btn{grid-area: btn;}
+            h2{grid-area: heading;}   
+            }
+            label{
+                    max-height: 0;
+                    margin-top: .5rem;
+                    &::after{
+                        content:'*';
+                        @extend .text-warning;
+                    }
+                    @media screen and (min-width:768px){
+                        max-height: 100px;
+                    }
+
+                }
+            textarea{
+                min-height: 8rem;
+                resize: none;
+            }
+            input,
+            textarea{
+                @include normalize(.25rem,.5rem 1rem,.1rem solid transparent, $ma:border-radius);
+                outline:none;
+                &:focus{
+                    @extend .border-dark, %scale, %transition;
+                    & + .valid{
+                        @include normalize($p:.5rem);
+                        @extend %scale, %transition;
+                        max-height: 600px;
+                            }
+                    &:valid{
+                        @extend .border-success;
+                        &+ .valid{ @extend .bg-success;}
+                    }
+                    &:not(:placeholder-shown):invalid{
+                        @extend .border-danger;
+                        & + .valid{
+                            @extend .bg-danger;
+                        } 
+                    }
+                        }
+                    }
+            .valid{
+                @extend .text-light, .bg-dark;
+                max-height: 0;
+                overflow:hidden;
+                text-shadow: 0 0 .5rem #333;
+                }
+            .btn{
+                @include normalize(.25rem 0, .5rem 1 rem, auto, $ba:margin-left)
+                }
+        }
+        .social{
+			@include normalize(3rem auto 0, .5rem);
+			@include flexbox($fa: center);
+			@extend .bg-primary;
+			max-width: 280px;
+			border-radius: .25rem .25rem 0 0;
+			a{
+				@include normalize(.5rem, 0, .25rem, border-radius);
+				@extend %icon, .bg-light;
+				&:hover{
+					box-shadow: 0 0 .5rem #333;
+		}	}	}
+        iframe{
+            @include normalize(100%,100%,$ma:width,$pa:height);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1; 
+            &.active{
+                @extend %front-side;
+                opacity: .9;
+            }                                   
+        }
+        .btn.opacity{
+            @extend %icon,.bg-dark,.text-light;
+            position: absolute;
+            top: .5rem;
+            right: .5rem;
+            &.icon-min{
+                @extend %front-side;
+            }
+        }
+        .copy{
+            @include normalize(0 -1rem -1rem 1rem);
+            @extend .bg-primary, .text-light;
+            a{
+                @include normalize(.25rem,.25rem ,none,text-decoration);
+                @extend .bg-light;
+                border-radius:.25rem;
+            }
+        }
+}

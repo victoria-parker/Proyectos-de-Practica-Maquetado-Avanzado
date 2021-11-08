@@ -1,0 +1,206 @@
+/* Content First - Mobile First */
+/* General Rules */
+    @import url('icomoon.css');
+    @import url('less.css');
+    @import url('sass.css');
+    :root {
+        --first: #448;
+        --second: #36c;
+        --light: #eee;
+        --dark: #333;
+        --hover: rgba(51, 51, 51, .5);
+    }
+
+    * {
+        box-sizing: border-box;
+        /* para que el final width sea el width y no se deforme por el contenido */
+        font-family: 'Raleway', 'segoe ui', 'calibri', sans-serif;
+    }
+
+    body,
+    h1,
+    h2,
+    h3,
+    .menu {
+        margin: 0;
+    }
+
+    .btn {
+        margin: .5em;
+        border-radius: .25rem;
+        border: .1rem solid var(--light);
+        color: var(--light);
+        background-color: transparent;
+        font-size: 1.2rem;
+    }
+
+    .btn:hover {
+        color: var(--first);
+        background-color: var(--light);
+    }
+
+    .opacity {
+        opacity: .3;
+    }
+
+    .opacity:hover {
+        opacity: .7;
+    }
+
+
+/* Navigation */
+
+    nav {
+        position: sticky;
+        z-index: 2;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        background: var(--first) linear-gradient(var(--second), var(--first));
+    }
+
+    nav a {
+        position: relative;
+        display: block;
+        padding: .5rem;
+        color: var(--light);
+        text-decoration: none;
+        transition: all .5s ease;
+    }
+    nav span{
+        padding: .5rem;
+    }
+
+    .logo {
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .menu {
+        list-style: none;
+        padding: 0;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+    }
+
+    .menu.active {
+        max-height: 600px;
+    }
+
+    .menu a:hover {
+        background-color: var(--hover);
+    }
+    .menu a::after{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: .25rem;
+        height: .25rem;
+        opacity: 0;
+        background-color: #eee;
+        transition: all 1s ease-out;
+    }
+    .menu a:hover::after{
+        width: 100%;
+        opacity: 1;
+    }
+    .icon-back {
+        position: fixed;
+        right: .5rem;
+        bottom: .5rem;
+        border-radius:1rem ;
+        background-color: var(--dark);
+    }
+
+/* Main Content */
+    main, section{
+        margin:.5rem auto;
+        padding:1rem;
+    }
+    section{
+        border-radius: .25rem;
+        box-shadow: 0 0 .5rem var(--dark);
+    }
+    main .header{
+        text-align: center;
+        font-size: min(calc(2vw +.5rem),3rem);
+    }
+    article header{
+        color: #333;
+        border-bottom: .1rem solid;
+    }
+    .example{
+        display: flex;
+        flex-wrap: wrap;
+        margin: .5rem;
+        margin-left: 2rem;
+        border-left: .25rem solid var(--first);
+        padding: 1rem;
+        background-color: var(--light);
+        list-style: none;
+    }
+    .example > div{
+        padding: .5rem;
+    }
+    .example [class*="col-"]{
+        border: .1rem dashed var(--dark);
+    }
+/* Small Devices - Smartphones */
+
+    @media screen and (min-width:576px) {
+        /*General Rules*/
+        main{max-width: 540px;}
+    }
+
+
+/* Medium Devices -Tables */
+
+    @media screen and (min-width:768px) {
+        /*General Rules*/
+        main{max-width: 720px;}
+        /* Navigation */
+            nav .btn,
+            nav span{
+                display: none;
+            }
+            nav .menu, .menu a{
+                display: flex;
+                align-items: center;
+            }
+            nav .menu{
+                width: auto; /* auto solamente se puede aplicar a elementos de bloque */
+                max-height: 600px;
+            }
+
+            .menu a{
+                font-size: 1.5rem;
+            }
+    }
+
+
+/* Large Devices - Desktop */
+
+    @media screen and (min-width:992px) {
+        /*General Rules*/
+        main{max-width: 960px;}
+        /* Navigation */
+        nav span{
+            display: block;
+            font-size: 1rem;
+        }
+    }
+
+
+
+/* ExtraLarge Devices - HD Desktop */
+
+    @media screen and (min-width:1200px) {
+        /* Navigation */
+        nav{
+            justify-content: space-around;
+        }
+    }

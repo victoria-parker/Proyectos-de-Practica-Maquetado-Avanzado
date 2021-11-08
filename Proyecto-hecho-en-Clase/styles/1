@@ -1,0 +1,140 @@
+/* Importaciones */
+
+/* Font-face igual que se usa en css */
+@font-face {
+    src: url('../assets/fonts/Starjedi.ttf');
+    font-family: 'star wars';
+}
+
+//Variables Globales
+    //Colores
+    @first: #448;
+    @second:#36c;
+    @light: #eee;
+    @dark:  #333;
+    @hover: rgba(51, 51, 51, .5);
+
+    //MediaQueries o Medidas
+    @sm: 576px;
+    @md: 768px;
+    @lg: 992px;
+    @xl: 1200px;
+    @col:24;
+    @r:  .25rem; /* radio */
+
+    //Archivos
+    @path: '../assets/img';
+    @backgrounds:
+    'osx-high-sierra.jpg',
+    'osx-leopard,png',
+    'osx-lion,png',
+    'osx-mavericks,png',
+    'osx-mojave.jpg',
+    'osx-mojave-night.jpg',
+    'osx-mountain-lion.jpg',
+    'osx-sierra.jpg',
+    'osx-snow-leopard,png';
+
+//Nesting: Podemos anidar un selector adentro de otro y Less crea el selector específico
+#header{
+    height: 100vh; /* Viewport Height la altura de la ventana, el 100% de la altura de la ventana. La cabezara siempre ocupa toda la ventan */
+    min-height: 200px;
+    max-height: 600px;
+    display: grid;
+    justify-content: center; /* Los elementos con position Absolute no son tenidos en cuenta */
+    align-items: center;
+    .normalize(@p:1rem);
+    .position(relative);
+    text-align: center;
+    .header{
+        font-size: calc(2vw + .5rem); /* Viewport Width */
+        h1{font-family: star wars;}
+        h1,p{.normalize;}
+        color: @light;
+        .text-shadow;
+    }
+    span{ 
+        .normalize(.25rem);
+        .rounded;
+        .box-shadow;
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        background-color: @light;
+        &.active{
+            width: 3rem;
+        }
+    }
+}
+ //Slide Gallery
+ .slide{
+    .normalize;
+    .position;
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    li{ 
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity:0;
+        .position; 
+        background-size: cover;
+        background-position: center;
+        .transition;
+        .bg;
+        &.active{ opacity: 1; }
+    }
+}
+button{
+    .position(@xa:bottom);
+    .normalize(@p:.5rem);
+    color: @light;
+    background-color: transparent;
+    font-size: calc(2vw + 1rem);
+    &.icon-prev{ .position; }
+    &.icon-next{ .position(@xa:right); }
+}
+}
+//Mixins: Estilos anidables que se utilizan como atributos
+    .rounded(){
+        -webkit-border-radius:@r;
+        -moz-border-radius: @r;
+        -ms-border-radius: @r;
+        -o-border-radius: @r;
+        border-radius: @r;
+    }
+    .text-shadow(){
+        text-shadow: 0 0 .5rem @dark;
+    }
+    .box-shadow(){
+        box-shadow: 0 0 .5rem @dark;
+    }
+
+//Mixins Paramétricos: Estilos que reciben valores que van a ser aplicados
+    .normalize(@m:0; @b:none; @p:0){ //como separador esta bueno usar ; porque la , se usa para arrays
+        margin: @m;
+        border: @b;
+        padding:@p;
+    }
+    .position(@p:absolute, @x:0, @y:0, @xa:left, @ya:top){
+        position: @p;
+        @{ya}: @y;
+        @{xa}: @x;
+    }
+//Mixinis Recursivos: Estilos que se repiten en base a una condición
+    //Grid system
+    .grid(@i:1) when (@i <= @col){
+        .col-@{i}{width: percentage((@i/@col));}    
+        .grid(@i+1)
+    }
+    .grid;
+
+    // Slide Gallery
+    .bg (@i:1) when (@i <= length(@backgrounds)){
+        @bg: extract(@backgrounds, @i);
+        &:nth-child(@{i}){
+            background-image: url('@{path}/@{bg}');
+        }
+        .bg(@i + 1);
+    }
